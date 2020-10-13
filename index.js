@@ -1,10 +1,14 @@
 #! /usr/bin/env node
+
+const { default: Axios } = require('axios');
+
 const readline =  require('readline').createInterface({
     input: process.stdin,
     output: process.stdout,
 })
 
-readline.question('What would you like to log today', item=> {
+readline.question('What would you like to log today', async (item)=> {
+    const {data} = await Axios.get('http://localhost:3001/food');
     console.log(item);
     readline.close();
 } )
